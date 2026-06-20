@@ -448,7 +448,6 @@ export default function App() {
         <div className="philgrid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14 }}>
           {PHILOSOPHY.map(([t, d], i) => (
             <Reveal key={i} delay={Math.min(i * 0.05, 0.3)} className="lift" style={{ border: `1px solid ${c.line}`, borderRadius: 12, padding: "26px 24px", background: c.card, position: "relative", overflow: "hidden" }}>
-              <div className="serif" aria-hidden style={{ position: "absolute", top: -14, right: 14, fontSize: 80, fontWeight: 700, color: dark ? "rgba(200,162,75,.08)" : "rgba(15,34,56,.05)" }}>{String(i + 1).padStart(2, "0")}</div>
               <h3 className="serif" style={{ fontSize: 20, fontWeight: 600, marginBottom: 10, color: GOLD }}>{t}</h3>
               <p style={{ fontSize: 14, color: c.sub, lineHeight: 1.6, position: "relative" }}>{d}</p>
             </Reveal>
