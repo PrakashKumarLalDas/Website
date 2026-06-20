@@ -296,7 +296,7 @@ export default function App() {
             <Reveal delay={0.2}>
               <div className="heroport" style={{ justifySelf: "center", position: "relative" }}>
                 <div style={{ position: "relative", width: 280, height: 340, borderRadius: 10, overflow: "hidden", border: `1px solid rgba(255,255,255,.18)`, background: "linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02))", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img src="/portrait.jpg" alt="Prakash Kumar Lal Das" loading="eager" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 15%" }} />
+                  <img src="portrait.jpg" alt="Prakash Kumar Lal Das" loading="eager" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 15%" }} />
                   <div style={{ position: "absolute", inset: 0, boxShadow: `inset 0 0 0 1px ${GOLD}55`, pointerEvents: "none" }} />
                 </div>
                 {/* km-marker tag */}
