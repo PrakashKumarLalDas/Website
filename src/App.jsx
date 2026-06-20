@@ -203,35 +203,6 @@ function Reveal({ children, delay = 0, as: Tag = "div", className = "", style = 
 
 // ---- Components ------------------------------------------------------------
 
-function ContactCard({ label, value, href, delay, icon }) {
-  const [revealed, setRevealed] = useState(false);
-  return (
-    <Reveal delay={delay}>
-      <a 
-        href={revealed ? href : "#"} 
-        target={label === "LinkedIn" && revealed ? "_blank" : undefined} 
-        rel={label === "LinkedIn" && revealed ? "noopener noreferrer" : undefined} 
-        onClick={(e) => {
-          if (!revealed) {
-            e.preventDefault();
-            setRevealed(true);
-          }
-        }}
-        className="lift" 
-        style={{ display: "block", textDecoration: "none", border: "1px solid rgba(255,255,255,.16)", borderRadius: 12, padding: "20px 22px", background: "rgba(255,255,255,.04)", cursor: "pointer" }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 10, color: GOLD, marginBottom: 10 }}>
-          {icon}
-          {!revealed && <span className="mono" style={{ fontSize: 11, letterSpacing: "1.5px" }}>{label.toUpperCase()}</span>}
-        </div>
-        <div style={{ fontSize: 16.5, color: "#EAF0F6", fontWeight: 500, wordBreak: "break-word" }}>
-          {revealed ? value : `Click to reveal ${label.toLowerCase()}`}
-        </div>
-      </a>
-    </Reveal>
-  );
-}
-
 export default function App() {
   const [dark, setDark] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -517,13 +488,24 @@ export default function App() {
               Available for General Manager, Vice President, Director and COO-level mandates with private infrastructure and highway operators.
             </p>
           </Reveal>
-          <div className="contactgrid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14, marginTop: 40, maxWidth: 640 }}>
+          <div className="contactgrid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 14, marginTop: 40, maxWidth: 640 }}>
             {[
-              ["Email", "prakash.itnl@gmail.com", "mailto:prakash.itnl@gmail.com", <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>],
-              ["Phone", "+91 75730 40077", "tel:+917573040077", <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>],
-              ["LinkedIn", "linkedin.com/in/prakashkumarlaldas", "https://www.linkedin.com/in/prakashkumarlaldas/", <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>],
-            ].map(([l, v, h, icon], i) => (
-              <ContactCard key={i} label={l} value={v} href={h} delay={0.2 + i * 0.06} icon={icon} />
+              ["Email", "mailto:prakash.itnl@gmail.com", <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>],
+              ["Phone", "tel:+917573040077", <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>],
+              ["LinkedIn", "https://www.linkedin.com/in/prakashkumarlaldas/", <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>],
+            ].map(([l, h, icon], i) => (
+              <Reveal key={i} delay={0.2 + i * 0.06}>
+                <a 
+                  href={h} 
+                  target={l === "LinkedIn" ? "_blank" : undefined} 
+                  rel={l === "LinkedIn" ? "noopener noreferrer" : undefined} 
+                  className="lift" 
+                  style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, textDecoration: "none", border: "1px solid rgba(255,255,255,.16)", borderRadius: 12, padding: "24px 16px", background: "rgba(255,255,255,.04)", cursor: "pointer", color: "#EAF0F6" }}
+                >
+                  <div style={{ color: GOLD }}>{icon}</div>
+                  <span className="mono" style={{ fontSize: 11, letterSpacing: "1.5px" }}>{l.toUpperCase()}</span>
+                </a>
+              </Reveal>
             ))}
           </div>
           <Reveal delay={0.4}>
