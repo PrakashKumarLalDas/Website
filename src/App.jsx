@@ -281,7 +281,7 @@ export default function App() {
               </Reveal>
               <Reveal delay={0.16}>
                 <p style={{ marginTop: 24, maxWidth: 560, fontSize: 17, lineHeight: 1.65, color: "#B9C7D6", fontWeight: 300 }}>
-                  Senior operations leader steering tolling ecosystems, O&M programmes and large-scale highway assets across India's national corridors — from plaza floor to NHAI boardroom.
+                  Senior infrastructure executive with expertise in toll operations, asset management, digital transformation and large-scale highway networks. Open to shaping the next generation of mobility infrastructure across public and private sectors.
                 </p>
               </Reveal>
               <Reveal delay={0.24}>
