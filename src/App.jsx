@@ -233,15 +233,34 @@ export default function App() {
         .lift:hover { transform: translateY(-4px); border-color: ${GOLD}; }
         .ul { background-image: linear-gradient(${GOLD},${GOLD}); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .35s; }
         .ul:hover { background-size: 100% 1.5px; }
+        
+        .name-scroll { display: inline-block; white-space: nowrap; }
+        @media(max-width: 480px) {
+          .name-container {
+            width: 150px;
+            overflow: hidden;
+            white-space: nowrap;
+            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+            mask-image: linear-gradient(to right, black 85%, transparent 100%);
+          }
+          .name-scroll { animation: pingpong 5s ease-in-out infinite alternate; }
+          .est-text { display: none; }
+        }
+        @keyframes pingpong {
+          0%, 15% { transform: translateX(0); }
+          85%, 100% { transform: translateX(-48px); }
+        }
         @media (prefers-reduced-motion: reduce){ *{ animation:none!important; transition:none!important; } }
       `}</style>
 
       {/* ---- Header ---- */}
       <header style={{ position: "sticky", top: 0, zIndex: 50, background: c.header, backdropFilter: "blur(14px)", borderBottom: `1px solid ${c.line}` }}>
         <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 24px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "baseline", gap: 10, color: c.text }}>
-            <span className="serif" style={{ fontSize: 19, fontWeight: 600, letterSpacing: ".3px" }}>Prakash Kumar Lal Das</span>
-            <span className="mono" style={{ fontSize: 10.5, color: GOLD, letterSpacing: "1.5px" }}>EST. 1999</span>
+          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 10, color: c.text, padding: 0 }}>
+            <div className="name-container">
+              <span className="serif name-scroll" style={{ fontSize: 19, fontWeight: 600, letterSpacing: ".3px" }}>Prakash Kumar Lal Das</span>
+            </div>
+            <span className="mono est-text" style={{ fontSize: 10.5, color: GOLD, letterSpacing: "1.5px" }}>EST. 1999</span>
           </button>
           <nav style={{ display: "flex", alignItems: "center", gap: 26 }}>
             <div style={{ display: "none", gap: 26 }} className="desknav">
