@@ -233,43 +233,24 @@ export default function App() {
         .lift:hover { transform: translateY(-4px); border-color: ${GOLD}; }
         .ul { background-image: linear-gradient(${GOLD},${GOLD}); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .35s; }
         .ul:hover { background-size: 100% 1.5px; }
-        
-        .name-scroll { display: inline-block; white-space: nowrap; }
-        @media(max-width: 480px) {
-          .name-container {
-            width: 150px;
-            overflow: hidden;
-            white-space: nowrap;
-            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-            mask-image: linear-gradient(to right, black 85%, transparent 100%);
-          }
-          .name-scroll { animation: pingpong 5s ease-in-out infinite alternate; }
-          .est-text { display: none; }
-        }
-        @keyframes pingpong {
-          0%, 15% { transform: translateX(0); }
-          85%, 100% { transform: translateX(-48px); }
-        }
         @media (prefers-reduced-motion: reduce){ *{ animation:none!important; transition:none!important; } }
       `}</style>
 
       {/* ---- Header ---- */}
       <header style={{ position: "sticky", top: 0, zIndex: 50, background: c.header, backdropFilter: "blur(14px)", borderBottom: `1px solid ${c.line}` }}>
-        <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 24px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 10, color: c.text, padding: 0 }}>
-            <div className="name-container">
-              <span className="serif name-scroll" style={{ fontSize: 19, fontWeight: 600, letterSpacing: ".3px" }}>Prakash Kumar Lal Das</span>
-            </div>
-            <span className="mono est-text" style={{ fontSize: 10.5, color: GOLD, letterSpacing: "1.5px" }}>EST. 1999</span>
+        <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 24px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "baseline", gap: 8, color: c.text, padding: 0, textAlign: "left" }}>
+            <span className="serif" style={{ fontSize: "clamp(15px, 4vw, 19px)", fontWeight: 600, letterSpacing: ".3px", whiteSpace: "nowrap" }}>Prakash Kumar Lal Das</span>
+            <span className="mono" style={{ fontSize: "clamp(9px, 2.5vw, 10.5px)", color: GOLD, letterSpacing: "1.5px", whiteSpace: "nowrap" }}>EST. 1999</span>
           </button>
           <nav style={{ display: "flex", alignItems: "center", gap: 26 }}>
-            <div style={{ display: "none", gap: 26 }} className="desknav">
+            <div style={{ display: "none", gap: 26, alignItems: "center" }} className="desknav">
               {nav.map(([l, id]) => (
                 <button key={id} onClick={() => go(id)} className="ul" style={{ background: "none", border: "none", cursor: "pointer", color: c.sub, fontSize: 13.5, fontWeight: 500, letterSpacing: ".2px", paddingBottom: 2 }}>{l}</button>
               ))}
+              <button onClick={() => setDark(!dark)} aria-label="Toggle theme" style={{ background: "none", border: `1px solid ${c.line}`, borderRadius: 999, width: 40, height: 40, cursor: "pointer", color: c.text, fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center" }}>{dark ? "☀" : "☾"}</button>
             </div>
-            <button onClick={() => setDark(!dark)} aria-label="Toggle theme" style={{ background: "none", border: `1px solid ${c.line}`, borderRadius: 999, width: 40, height: 40, cursor: "pointer", color: c.text, fontSize: 15 }}>{dark ? "☀" : "☾"}</button>
-            <button onClick={() => setMenu(!menu)} className="burger" aria-label="Menu" style={{ background: "none", border: `1px solid ${c.line}`, borderRadius: 8, width: 40, height: 40, cursor: "pointer", color: c.text, fontSize: 18 }}>≡</button>
+            <button onClick={() => setMenu(!menu)} className="burger" aria-label="Menu" style={{ background: "none", border: `1px solid ${c.line}`, borderRadius: 8, width: 40, height: 40, cursor: "pointer", color: c.text, fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center" }}>≡</button>
           </nav>
         </div>
         {menu && (
@@ -277,6 +258,10 @@ export default function App() {
             {nav.map(([l, id]) => (
               <button key={id} onClick={() => go(id)} style={{ display: "block", width: "100%", textAlign: "left", background: "none", border: "none", padding: "11px 0", cursor: "pointer", color: c.text, fontSize: 15, borderBottom: `1px solid ${c.line}` }}>{l}</button>
             ))}
+            <button onClick={() => { setDark(!dark); setMenu(false); }} style={{ display: "flex", alignItems: "center", gap: 12, width: "100%", textAlign: "left", background: "none", border: "none", padding: "16px 0 4px", cursor: "pointer", color: c.text, fontSize: 15, fontWeight: 500 }}>
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: 999, border: `1px solid ${c.line}` }}>{dark ? "☀" : "☾"}</span>
+              {dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            </button>
           </div>
         )}
       </header>
